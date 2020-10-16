@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorBackground">#272727</color>
     <color name="colorVScodeDark">#13111b</color>
-    <color name="colorVScode">#191622</color>
+    <color name="colorVScode">#262233</color>
+    <!-- colorVScode original -> #191622 -->
 </resources>

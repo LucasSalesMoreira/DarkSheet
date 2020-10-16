@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.sales.darksheet.ui.chats.DashboardFragment"
+        android:name="com.sales.darksheet.ui.chats.ChatsFragment"
         android:label="@string/title_chats"
         tools:layout="@layout/fragment_dashboard" />
 

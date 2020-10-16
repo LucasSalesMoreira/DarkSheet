@@ -1,9 +1,9 @@
 package com.sales.darksheet;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import com.sales.darksheet.ui.login.LoginActivity;
 
 public class StartApp extends AppCompatActivity {
 
@@ -15,7 +15,7 @@ public class StartApp extends AppCompatActivity {
     }
 
     private void loadApp() {
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finishAffinity();
     }
 }
