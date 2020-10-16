@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DarkSheet</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_feed">Feed</string>
+    <string name="title_chats">Chats</string>
+    <string name="title_settings">Settings</string>
+</resources>
