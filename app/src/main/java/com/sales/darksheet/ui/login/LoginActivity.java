@@ -1,30 +1,24 @@
 package com.sales.darksheet.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
+import com.sales.darksheet.HomeActivity;
 import com.sales.darksheet.R;
-import com.sales.darksheet.conf.Conf;
-
+import com.sales.darksheet.connection.ConnectionIO;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URISyntaxException;
-
-import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private ProgressBar loadingProgressBar;
     private Socket socket = null;
 
     @Override
@@ -32,49 +26,61 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EditText usernameEditText = findViewById(R.id.username);
+        EditText emailEditText = findViewById(R.id.username);
         EditText passwordEditText = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.login);
-        ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        loadingProgressBar = findViewById(R.id.loading);
+
+        socket = new ConnectionIO().connect();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                try {
-                    socket.emit("login", new JSONObject()
-                            .put("email", "teste@gmail.com")
-                            .put("password", "12345678"));
-                } catch (JSONException e) {
-                    Log.d("ERROR_JSON", e.getMessage());
-                }
+                login(emailEditText.getText().toString(), passwordEditText.getText().toString());
             }
         });
 
+        socket.on("login", emitterLogin);
+    }
+
+    private void login(String email, String password) {
         try {
-            socket = IO.socket(Conf.SERVER_HOST);
-            socket.connect();
-        } catch (URISyntaxException e) {
-            Log.d("ERROR_CONNECTION", e.getMessage());
+            socket.emit("login", new JSONObject().put("email", email)
+                    .put("password", password));
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
-
-        socket.on("login", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        JSONObject jsonObject = (JSONObject) args[0];
-                        System.out.println("Resposta do servidor: " + jsonObject);
-                    }
-                });
-            }
-        });
-
     }
 
     private void showLoginFailed(String errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+
+    Emitter.Listener emitterLogin = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+
+            JSONObject jsonObject = (JSONObject) args[0];
+            System.out.println("Resposta do servidor: " + jsonObject);
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadingProgressBar.setVisibility(View.GONE);
+                    try {
+                        if (jsonObject.getBoolean("ok") == true) {
+                            socket.disconnect();
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            finishAffinity();
+                        } else {
+                            showLoginFailed("Dados inválidos!");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    };
 }

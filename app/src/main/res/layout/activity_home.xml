@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorVScode">
 
-
-
     <!-- Background original do BottomNavigationView -> android:background="?android:attr/windowBackground"-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
