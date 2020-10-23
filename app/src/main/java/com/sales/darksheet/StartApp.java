@@ -11,11 +11,14 @@ public class StartApp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_app);
-        loadApp();
-    }
 
-    private void loadApp() {
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finishAffinity();
+        if (true) {
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finishAffinity();
+        } else {
+            startActivity(new Intent(getApplicationContext(), LoadActivity.class));
+            finishAffinity();
+        }
+
     }
 }

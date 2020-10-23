@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.sales.darksheet.HomeActivity;
+import com.sales.darksheet.LoadActivity;
 import com.sales.darksheet.R;
 import com.sales.darksheet.connection.ConnectionIO;
 import org.json.JSONException;
@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressBar loadingProgressBar;
     private Socket socket = null;
+    private String email = null, password = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,14 +38,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                login(emailEditText.getText().toString(), passwordEditText.getText().toString());
+                email = emailEditText.getText().toString();
+                password = passwordEditText.getText().toString();
+                login();
             }
         });
 
         socket.on("login", emitterLogin);
     }
 
-    private void login(String email, String password) {
+    private void login() {
         try {
             socket.emit("login", new JSONObject().put("email", email)
                     .put("password", password));
@@ -71,7 +74,9 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         if (jsonObject.getBoolean("ok") == true) {
                             socket.disconnect();
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            Intent intent = new Intent(getApplicationContext(), LoadActivity.class);
+                            intent.putExtra("email", email);
+                            startActivity(intent);
                             finishAffinity();
                         } else {
                             showLoginFailed("Dados inválidos!");

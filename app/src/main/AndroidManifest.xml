@@ -11,23 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DarkSheet"
-        android:usesCleartextTraffic="true"> <!-- Permitir conexões sem criptografia (inseguras) -->
-
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:screenOrientation="nosensor"/>
-        <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:screenOrientation="nosensor"/>
-        <activity android:name=".StartApp"
-            android:screenOrientation="nosensor">
+        android:usesCleartextTraffic="true">
+        <activity android:name=".StartApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <!-- Permitir conexões sem criptografia (inseguras) -->
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".LoadActivity"
+            android:screenOrientation="nosensor">
         </activity>
     </application>
 
