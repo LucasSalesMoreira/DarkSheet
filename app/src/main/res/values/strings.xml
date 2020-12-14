@@ -7,10 +7,20 @@
     <string name="title_activity_login">Login</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">entrar</string>
+    <string name="action_create">nova conta</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="chatHint">Mensagem...</string>
+    <string name="title_activity_new_user">New User</string>
+    <string name="newUserHintEmail">Email:</string>
+    <string name="newUserHintPass1">Senha:</string>
+    <string name="newUserHintPass2">Confirmar senha:</string>
+    <string name="newUserHintUserName">Usuário:</string>
+    <string name="action_create2">criar</string>
+    <string name="action_send_code">Enviar</string>
+    <string name="code">código:</string>
 </resources>

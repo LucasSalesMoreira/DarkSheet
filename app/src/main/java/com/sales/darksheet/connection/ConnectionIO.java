@@ -12,7 +12,7 @@ public class ConnectionIO {
 
     public Socket connect() {
         try {
-            socket = IO.socket(Conf.SERVER_HOST);
+            socket = IO.socket(Conf.LOCAL_SERVER_HOST);
             return socket.connect();
         } catch (URISyntaxException e) {
             Log.d("ERROR_CONNECTION", e.getMessage());

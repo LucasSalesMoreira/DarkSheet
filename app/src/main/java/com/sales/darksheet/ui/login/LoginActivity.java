@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.sales.darksheet.LoadActivity;
+import com.sales.darksheet.NewUserActivity;
 import com.sales.darksheet.R;
+import com.sales.darksheet.base.Data;
 import com.sales.darksheet.connection.ConnectionIO;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText emailEditText = findViewById(R.id.username);
         EditText passwordEditText = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.login);
+        Button createButton = findViewById(R.id.create);
         loadingProgressBar = findViewById(R.id.loading);
-
         socket = new ConnectionIO().connect();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,14 @@ public class LoginActivity extends AppCompatActivity {
                 email = emailEditText.getText().toString();
                 password = passwordEditText.getText().toString();
                 login();
+            }
+        });
+
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Data.SOCKET = socket;
+                startActivity(new Intent(getApplicationContext(), NewUserActivity.class));
             }
         });
 
@@ -63,17 +73,17 @@ public class LoginActivity extends AppCompatActivity {
     Emitter.Listener emitterLogin = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-
-            JSONObject jsonObject = (JSONObject) args[0];
-            System.out.println("Resposta do servidor: " + jsonObject);
-
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     loadingProgressBar.setVisibility(View.GONE);
                     try {
-                        if (jsonObject.getBoolean("ok") == true) {
+                        JSONObject jsonObject = new JSONObject(String.valueOf(args[0]));
+                        System.out.println("Resposta do servidor: " + jsonObject);
+
+                        if (jsonObject.getBoolean("ok")) {
                             socket.disconnect();
+                            Data.NAME = jsonObject.getString("name");
                             Intent intent = new Intent(getApplicationContext(), LoadActivity.class);
                             intent.putExtra("email", email);
                             startActivity(intent);

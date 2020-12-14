@@ -3,6 +3,8 @@ package com.sales.darksheet;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+
 import com.sales.darksheet.base.Data;
 import com.sales.darksheet.connection.ConnectionIO;
 import org.json.JSONArray;
@@ -27,6 +29,7 @@ public class LoadActivity extends AppCompatActivity {
     }
 
     private void loadApp() {
+        Data.EMAIL = email;
         socket.on("loadContacts", loadContacts);
         socket.on("loadMessages", loadMessages);
         socket.emit("loadContacts", email);
@@ -39,7 +42,7 @@ public class LoadActivity extends AppCompatActivity {
                 JSONArray chats = new JSONArray(String.valueOf(args[0]));
                 System.out.println(chats);
                 Data.CHATS = chats;
-                socket.emit("loadMessages", "user_test3@gmail.com");
+                socket.emit("loadMessages", email);
             } catch (JSONException e) {
                 System.out.println(e.getMessage());
             }
@@ -60,6 +63,7 @@ public class LoadActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        Data.SOCKET = socket;
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         finishAffinity();
                     }
