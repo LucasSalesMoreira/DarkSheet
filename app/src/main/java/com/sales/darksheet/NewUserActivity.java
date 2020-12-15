@@ -58,7 +58,7 @@ public class NewUserActivity extends AppCompatActivity {
                                         .putExtra("pass", pass1).putExtra("email", email));
                                 finishAffinity();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Falha no envio do código!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "O email já existe!", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
