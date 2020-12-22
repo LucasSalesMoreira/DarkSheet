@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DarkSheet"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CodeValidationActivity"></activity>
+        <activity android:name=".ExitActivity"></activity>
+        <activity android:name=".CodeValidationActivity" />
         <activity
             android:name=".NewUserActivity"
             android:label="@string/title_activity_new_user"

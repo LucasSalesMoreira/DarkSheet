@@ -13,6 +13,8 @@ import com.sales.darksheet.NewUserActivity;
 import com.sales.darksheet.R;
 import com.sales.darksheet.base.Data;
 import com.sales.darksheet.connection.ConnectionIO;
+import com.sales.darksheet.fileManager.Manager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import io.socket.client.Socket;
@@ -83,9 +85,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (jsonObject.getBoolean("ok")) {
                             socket.disconnect();
-                            Data.NAME = jsonObject.getString("name");
+                            String name = jsonObject.getString("name");
+                            String token = jsonObject.getString("newToken");
+                            new Manager(getApplicationContext()).saveToken(token);
                             Intent intent = new Intent(getApplicationContext(), LoadActivity.class);
-                            intent.putExtra("email", email);
+                            intent.putExtra("email", email).putExtra("name", name);
                             startActivity(intent);
                             finishAffinity();
                         } else {

@@ -17,6 +17,7 @@ public class LoadActivity extends AppCompatActivity {
 
     private Socket socket = null;
     private String email = null;
+    private String name = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +25,14 @@ public class LoadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_load);
 
         email = getIntent().getStringExtra("email");
+        name = getIntent().getStringExtra("name");
         socket = new ConnectionIO().connect();
         loadApp();
     }
 
     private void loadApp() {
         Data.EMAIL = email;
+        Data.NAME = name;
         socket.on("loadContacts", loadContacts);
         socket.on("loadMessages", loadMessages);
         socket.emit("loadContacts", email);
