@@ -57,6 +57,8 @@ public class ChatActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            if (arrayMessages.toArray().length > 0)
+                                arrayMessages.clear();
 
                             try {
                                 for (int i = 0; i < msgs.length(); i++) {
