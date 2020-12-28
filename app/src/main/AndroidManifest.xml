@@ -13,13 +13,12 @@
         android:theme="@style/Theme.DarkSheet"
         android:usesCleartextTraffic="true">
         <activity android:name=".ExitActivity"></activity>
-        <activity android:name=".CodeValidationActivity" />
+        <activity android:name=".ui.login.CodeValidationActivity" />
         <activity
-            android:name=".NewUserActivity"
+            android:name=".ui.login.NewUserActivity"
             android:label="@string/title_activity_new_user"
             android:screenOrientation="nosensor"
             android:theme="@style/Theme.DarkSheet.NoActionBar" />
-        <activity android:name=".ChatActivity" />
         <activity
             android:name=".StartApp"
             android:screenOrientation="nosensor">
@@ -39,6 +38,10 @@
             android:screenOrientation="nosensor" />
         <activity
             android:name=".LoadActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".ui.chats.ChatActivity"
+            android:label="@string/title_chats"
             android:screenOrientation="nosensor" />
     </application>
 

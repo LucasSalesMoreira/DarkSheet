@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorVScode"
     android:orientation="vertical"
-    tools:context=".ChatActivity">
+    tools:context=".ui.chats.ChatActivity">
 
     <ListView
         android:id="@+id/messages_view"

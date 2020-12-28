@@ -34,8 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Socket socket = Data.SOCKET;
-        socket.on("NEW_MSG", new Emitter.Listener() {
+        Data.SOCKET.on("NEW_MSG_IN_HOME", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 runOnUiThread(new Runnable() {
@@ -43,8 +42,8 @@ public class HomeActivity extends AppCompatActivity {
                     public void run() {
                         try {
                             JSONObject messageObject = new JSONObject(String.valueOf(args[0]));
-                            System.out.println("Mensagem recebida: " + messageObject.getString("msg"));
-                            Toast.makeText(getApplicationContext(), messageObject.getString("msg"), Toast.LENGTH_LONG).show();
+                            System.out.println("Mensagem recebida: " + messageObject);
+                            Toast.makeText(getApplicationContext(), "NA HOME: " + messageObject.getString("msg"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

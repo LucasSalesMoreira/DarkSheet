@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.sales.darksheet.LoadActivity;
-import com.sales.darksheet.NewUserActivity;
 import com.sales.darksheet.R;
 import com.sales.darksheet.base.Data;
 import com.sales.darksheet.connection.ConnectionIO;

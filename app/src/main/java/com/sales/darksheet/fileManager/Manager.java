@@ -36,11 +36,11 @@ public class Manager {
                 System.out.println("TOKEN = " + token);
                 return token;
             } else {
-                return null;
+                return "XXX-XXX";
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return "XXX-XXX";
         }
     }
 

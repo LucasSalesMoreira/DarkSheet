@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import com.sales.darksheet.ChatActivity;
+
 import com.sales.darksheet.R;
 import com.sales.darksheet.base.Data;
 import org.json.JSONArray;

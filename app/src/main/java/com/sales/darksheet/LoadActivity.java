@@ -34,7 +34,6 @@ public class LoadActivity extends AppCompatActivity {
         Data.EMAIL = email;
         Data.NAME = name;
         socket.on("loadContacts", loadContacts);
-        socket.on("loadMessages", loadMessages);
         socket.emit("loadContacts", email);
     }
 
@@ -45,32 +44,9 @@ public class LoadActivity extends AppCompatActivity {
                 JSONArray chats = new JSONArray(String.valueOf(args[0]));
                 System.out.println(chats);
                 Data.CHATS = chats;
-                socket.emit("loadMessages", email);
-            } catch (JSONException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    };
-
-    Emitter.Listener loadMessages = new Emitter.Listener() {
-        @Override
-        public void call(Object... args) {
-            try {
-                JSONObject msgs = new JSONObject(String.valueOf(args[0]));
-                System.out.println(msgs.getString("email"));
-                JSONArray inbox = msgs.getJSONArray("inbox");
-                JSONArray sendbox = msgs.getJSONArray("sendbox");
-                System.out.println(inbox);
-                System.out.println(sendbox);
-                Data.MESSAGES = msgs;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Data.SOCKET = socket;
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        finishAffinity();
-                    }
-                });
+                Data.SOCKET = socket;
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                finishAffinity();
             } catch (JSONException e) {
                 System.out.println(e.getMessage());
             }

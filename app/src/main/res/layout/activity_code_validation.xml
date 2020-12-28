@@ -7,7 +7,7 @@
     android:padding="10dp"
     android:gravity="center"
     android:background="@color/colorVScode"
-    tools:context=".CodeValidationActivity">
+    tools:context=".ui.login.CodeValidationActivity">
 
     <EditText
         android:id="@+id/txtCode"

@@ -1,4 +1,4 @@
-package com.sales.darksheet;
+package com.sales.darksheet.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.sales.darksheet.R;
 import com.sales.darksheet.base.Data;
 import com.sales.darksheet.ui.login.LoginActivity;
 

@@ -1,4 +1,4 @@
-package com.sales.darksheet;
+package com.sales.darksheet.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sales.darksheet.R;
 import com.sales.darksheet.base.Data;
+import com.sales.darksheet.ui.login.CodeValidationActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
