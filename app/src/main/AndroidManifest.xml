@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DarkSheet"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ExitActivity"></activity>
+        <activity android:name=".ExitActivity" />
         <activity android:name=".ui.login.CodeValidationActivity" />
         <activity
             android:name=".ui.login.NewUserActivity"

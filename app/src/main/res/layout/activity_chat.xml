@@ -28,7 +28,7 @@
             android:layout_weight="2"
             android:ems="10"
             android:hint="@string/chatHint"
-            android:inputType="text"
+            android:inputType="textAutoComplete"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:paddingHorizontal="10dp"
