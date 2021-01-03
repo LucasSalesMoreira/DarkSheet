@@ -74,6 +74,8 @@ public class SearchFragment extends Fragment {
                                 JSONObject response = new JSONObject(String.valueOf(args[0]));
                                 if (response.getBoolean("ok")) {
                                     Toast.makeText(getContext(), "Adicionado aos contatos", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getContext(), "Algo deu errado, vc pode já ter esse contato!", Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
