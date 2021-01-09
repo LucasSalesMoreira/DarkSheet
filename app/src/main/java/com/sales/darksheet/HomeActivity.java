@@ -1,9 +1,12 @@
 package com.sales.darksheet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sales.darksheet.base.Data;
+import com.sales.darksheet.service.MyJobIntentService;
+import com.sales.darksheet.service.NotificationService;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -46,6 +49,10 @@ public class HomeActivity extends AppCompatActivity {
                 });
             }
         });
-    }
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+            MyJobIntentService.startJobService(getApplicationContext(), new Intent(), 0);
+        else
+            startService(new Intent(getApplicationContext(), NotificationService.class));
+    }
 }

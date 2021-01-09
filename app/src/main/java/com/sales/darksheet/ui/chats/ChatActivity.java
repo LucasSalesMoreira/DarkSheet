@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.sales.darksheet.HomeActivity;
 import com.sales.darksheet.R;
 import com.sales.darksheet.base.Data;
+import com.sales.darksheet.service.NotificationService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +38,6 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Mostrar o botão adicional da TooBar (setinha)
         getSupportActionBar().setHomeButtonEnabled(true); // Tornando o botão adicional da TooBar clicável
-
         arrayMessages = new ArrayList<>();
 
         messagesView = findViewById(R.id.messages_view);
@@ -164,6 +164,7 @@ public class ChatActivity extends AppCompatActivity {
         System.out.println("Email de usuário: " + Data.EMAIL);
         try {
             msgObject.put("emailUser", Data.EMAIL)
+                    .put("userName", Data.NAME)
                     .put("emailContact", emailContact)
                     .put("contact", contact)
                     .put("text", msg);

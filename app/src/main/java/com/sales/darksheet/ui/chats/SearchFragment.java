@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.sales.darksheet.base.Data;
 import com.sales.darksheet.R;
 import org.json.JSONArray;

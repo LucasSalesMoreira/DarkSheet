@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import com.sales.darksheet.connection.ConnectionIO;
 import com.sales.darksheet.fileManager.Manager;
 import com.sales.darksheet.ui.login.LoginActivity;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
