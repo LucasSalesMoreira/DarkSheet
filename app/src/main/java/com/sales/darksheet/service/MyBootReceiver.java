@@ -12,7 +12,7 @@ public class MyBootReceiver extends BroadcastReceiver {
             Toast.makeText(context, "BOOT_COMPLETED", Toast.LENGTH_LONG).show();
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-                MyJobIntentService.startJobService(context, new Intent(), 0);
+                MyJobIntentService.startJobService(context, new Intent(), (int) (Math.random() * 1000));
             else
                 context.startService(new Intent(context, NotificationService.class));
         }
